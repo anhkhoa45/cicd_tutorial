@@ -1,0 +1,31 @@
+stages:
+  - test
+  - build
+  - deploy
+
+ci:
+  stage: test
+  image: alpine:latest
+  script:
+    - echo "Hello world"
+
+build:
+  stage: build
+  services:
+    - name: docker:19.03.12-dind # Docker daemon
+      command: ["--insecure-registry", "registry.localhost:5000"]
+  image: docker:19.03.12
+  variables:
+    # Variables for docker build
+    DOCKER_HOST: tcp://localhost:2375
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_BUILDKIT: 1 # Enable BuildKit
+    DOCKER_IMAGE: registry.localhost:5000/rails
+  script:
+    - docker build
+      --cache-from ${DOCKER_IMAGE}:${CI_COMMIT_REF_NAME}
+      --tag ${DOCKER_IMAGE}:${CI_COMMIT_REF_NAME}
+      --build-arg BUILDKIT_INLINE_CACHE=1
+      -f Dockerfile .
+    - docker push ${DOCKER_IMAGE}:${CI_COMMIT_REF_NAME}
+  when: manual
