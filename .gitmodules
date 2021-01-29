@@ -1,0 +1,3 @@
+[submodule "4.CICD"]
+	path = 4.CICD
+	url = git@gitlab.example.com:dev-user/rails.git
