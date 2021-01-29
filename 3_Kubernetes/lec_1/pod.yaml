@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: vue-app-pod
+  name: rails-app-pod
   labels:
-    app: vue-app
+    app: rails-app
 spec:
   containers:
-    - name: vue-app-container
-      image: registry.localhost:5000/vue-app:v2
+    - name: rails-app-container
+      image: registry.localhost:5000/rails-app:v1
       ports:
         - name: http-port
-          containerPort: 80
+          containerPort: 3000
           protocol: TCP

@@ -1,12 +1,12 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: vue-app-deployment-autoscaler
+  name: rails-app-deployment-autoscaler
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: vue-app-deployment
+    name: rails-app-deployment
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 70

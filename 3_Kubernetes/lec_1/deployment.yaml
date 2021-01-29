@@ -1,22 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vue-app-deployment
+  name: rails-app-deployment
 spec:
   selector:
     matchLabels:
-      app: vue-app
+      app: rails-app
   template:
     metadata:
       labels:
-        app: vue-app
+        app: rails-app
     spec:
       containers:
-      - name: vue-app-container
-        image: registry.localhost:5000/vue-app:v2
+      - name: rails-app-container
+        image: registry.localhost:5000/rails-app:v1
+        imagePullPolicy: Always
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "50m"
+            memory: "512Mi"
+            cpu: "200m"
         ports:
-        - containerPort: 80
+        - containerPort: 3000

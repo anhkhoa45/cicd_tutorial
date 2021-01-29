@@ -1,3 +1,3 @@
-1. Build the rails app and push to local registry
+1. Create a mysql service inside the cluster
 
-2. Write the yamls and deploy rails app to local cluster
+2. Connect rails app to that mysql service

@@ -1,17 +1,17 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: vue-app-ing
+  name: rails-app-ing
   annotations:
     ingress.kubernetes.io/rewrite-target: /$1
     ingress.kubernetes.io/force-ssl-redirect: "false"
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: vueapp.localhost
+  - host: railsapp.localhost
     http:
       paths:
       - path: /
         backend:
-          serviceName: vue-app-svc
+          serviceName: rails-app-svc
           servicePort: 80
