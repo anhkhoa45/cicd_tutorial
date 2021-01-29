@@ -1,0 +1,29 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: dummy-cronjob
+spec:
+  schedule: "*/1 * * * *" # every minute
+  suspend: true
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            cronjob: dummy-cronjob
+        spec:
+          containers:
+          - name: job
+            image: alpine:latest
+            imagePullPolicy: Always
+            command: ["/bin/ash", "-c"]
+            args:
+              - echo "$(date)" > /ps/log.txt
+            volumeMounts:
+            - name: ps
+              mountPath: /ps
+          restartPolicy: OnFailure
+          volumes:
+          - name: ps
+            persistentVolumeClaim:
+              claimName: local-pvc
