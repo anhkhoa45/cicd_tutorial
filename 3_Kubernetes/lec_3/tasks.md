@@ -1,3 +1,3 @@
-1. Create a mysql service inside the cluster
+1. Use configmap and secrets to config DB for rails app 
 
-2. Use configmap and secrets to config rails app 
+2. Setup probe for rails app
