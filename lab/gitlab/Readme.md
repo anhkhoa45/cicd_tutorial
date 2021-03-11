@@ -1,3 +1,8 @@
+# Prerequisites
+
+- Virtualbox
+- Vagrant
+
 # Start gitlab server
 
 ```bash
